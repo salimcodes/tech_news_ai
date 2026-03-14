@@ -1,0 +1,46 @@
+2026-03-11 15:31:01,711 WARNING rss_ingest: Failed to fetch sitemap https://techcabal.com/sitemap-posttype-post.2023.xml: The read operation timed out
+Traceback (most recent call last):
+  File "C:\Users\HP\Pictures\new\tech_news_ai\backfill_archive.py", line 70, in <module>
+    main()
+  File "C:\Users\HP\Pictures\new\tech_news_ai\backfill_archive.py", line 58, in main
+    added = backfill_articles_from_sitemap(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 109, in backfill_articles_from_sitemap
+    entries = discover_article_entries_from_sitemap(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 186, in discover_article_entries_from_sitemap
+    child_entries.extend(discover_article_entries_from_sitemap(sitemap_url=child_sitemap_url, request_timeout=request_timeout))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 175, in discover_article_entries_from_sitemap
+    xml_bytes, resolved_sitemap_url = _fetch_sitemap_bytes(sitemap_url, request_timeout=request_timeout)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 320, in _fetch_sitemap_bytes
+    raise last_error
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 314, in _fetch_sitemap_bytes
+    return _fetch_bytes(candidate, request_timeout=request_timeout), candidate
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 301, in _fetch_bytes
+    return response.read()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 473, in read
+    return self._read_chunked(amt)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 595, in _read_chunked
+    while (chunk_left := self._get_chunk_left()) is not None:
+                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 577, in _get_chunk_left
+    self._safe_read(2)  # toss the CRLF at the end of the chunk
+    ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 640, in _safe_read
+    data = self.fp.read(amt)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 708, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: The read operation timed out

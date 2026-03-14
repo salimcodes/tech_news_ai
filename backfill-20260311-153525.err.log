@@ -1,0 +1,75 @@
+2026-03-11 15:36:06,352 WARNING rss_ingest: Fetch attempt 1/3 failed for https://techcabal.com/sitemap-posttype-post.2025.xml: The read operation timed out
+2026-03-11 15:36:43,947 WARNING rss_ingest: Fetch attempt 2/3 failed for https://techcabal.com/sitemap-posttype-post.2025.xml: The read operation timed out
+2026-03-11 15:36:57,408 WARNING rss_ingest: Fetch attempt 3/3 failed for https://techcabal.com/sitemap-posttype-post.2025.xml: <urlopen error [Errno 11001] getaddrinfo failed>
+2026-03-11 15:36:57,423 WARNING rss_ingest: Failed to fetch sitemap https://techcabal.com/sitemap-posttype-post.2025.xml: <urlopen error [Errno 11001] getaddrinfo failed>
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1336, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1382, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1091, in _send_output
+    self.send(msg)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1035, in send
+    self.connect()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1470, in connect
+    super().connect()
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1001, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 829, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\socket.py", line 964, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Pictures\new\tech_news_ai\backfill_archive.py", line 81, in <module>
+    main()
+  File "C:\Users\HP\Pictures\new\tech_news_ai\backfill_archive.py", line 68, in main
+    added = backfill_articles_from_sitemap(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 113, in backfill_articles_from_sitemap
+    entries = discover_article_entries_from_sitemap(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 190, in discover_article_entries_from_sitemap
+    child_entries.extend(discover_article_entries_from_sitemap(sitemap_url=child_sitemap_url, request_timeout=request_timeout))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 179, in discover_article_entries_from_sitemap
+    xml_bytes, resolved_sitemap_url = _fetch_sitemap_bytes(sitemap_url, request_timeout=request_timeout)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 336, in _fetch_sitemap_bytes
+    raise last_error
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 330, in _fetch_sitemap_bytes
+    return _fetch_bytes(candidate, request_timeout=request_timeout), candidate
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 316, in _fetch_bytes
+    raise last_error
+  File "C:\Users\HP\Pictures\new\tech_news_ai\rss_ingest.py", line 307, in _fetch_bytes
+    with urlopen(request, timeout=request_timeout) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 1392, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python312\Lib\urllib\request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>

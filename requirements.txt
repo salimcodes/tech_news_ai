@@ -1,0 +1,6 @@
+flask
+openai>=1.0.0
+feedparser
+newspaper3k
+lxml_html_clean
+python-dotenv
